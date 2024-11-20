@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="{{ 'mainHeader.css' | asset_url }}">
+<link rel="stylesheet" href="{{ 'resets.css' | asset_url }}">
+
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
   <head>
@@ -298,15 +301,25 @@
     </script>
   </head>
 
-  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
-    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
-      {{ 'accessibility.skip_to_text' | t }}
-    </a>
-    <h1>This is a title</h1>
+  <body
+    class="
+      gradient
+      {% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}
+      {% endif %}
+    "
+  >
+    {{ content_for_header }}
+    {% comment %}
+      <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+        {{ 'accessibility.skip_to_text' | t }}
+      </a>
+    {% endcomment %}
 
-    {%- if settings.cart_type == 'drawer' -%}
-      {%- render 'cart-drawer' -%}
-    {%- endif -%}
+    {% comment %}
+      {%- if settings.cart_type == 'drawer' -%}
+        {%- render 'cart-drawer' -%}
+      {%- endif -%}
+    {% endcomment %}
 
     {% sections 'header-group' %}
 
